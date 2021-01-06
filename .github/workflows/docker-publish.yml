@@ -89,7 +89,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        run: docker build . --file ${{ matrix.build-type }}/Dockerfile --tag ${{ matrix.build-type }}
+        run: |
+          IMAGE_TAG=$(echo ${{ matrix.build-type }} | tr '[A-Z]' '[a-z]')
+          docker build . --file ${{ matrix.build-type }}/Dockerfile --tag $IMAGE_TAG
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
@@ -113,6 +115,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker tag ${{ matrix.build-type }} $IMAGE_ID:$VERSION
+          IMAGE_TAG=$(echo ${{ matrix.build-type }} | tr '[A-Z]' '[a-z]')
+          docker tag $IMAGE_TAG $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
