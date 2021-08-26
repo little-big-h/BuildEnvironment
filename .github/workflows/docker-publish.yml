@@ -80,7 +80,7 @@ jobs:
   custom-images:
     strategy:
       matrix:
-        build-type: [UbuntuBased, WolframBased, Frog]
+        build-type: [UbuntuBased, WolframBased, Frog, Latex]
 
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
