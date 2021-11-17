@@ -6,4 +6,5 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | g
 RUN raco pkg install --deps search-auto threading || true
 RUN apt update && apt install ccache
 RUN curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+RUN ln -s ../../bin/ccache /usr/lib/ccache/clang-11; ln -s ../../bin/ccache /usr/lib/ccache/clang++-11
 CMD /bin/bash
