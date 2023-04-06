@@ -1,2 +1,4 @@
 FROM ubuntu:latest
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -yy git curl latexmk emacs cm-super texlive-latex-extra texlive-science
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -yy git curl latexmk emacs cm-super texlive-latex-extra texlive-science 
+RUN DEBIAN_FRONTEND=noninteractive apt upgrade
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -yy python-pygments
