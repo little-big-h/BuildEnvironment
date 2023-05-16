@@ -60,7 +60,7 @@ jobs:
           docker tag $IMAGE_TAG $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
-  custom-images:
+  raspi-images:
     strategy:
       matrix:
         build-type: [ARMDebian]
