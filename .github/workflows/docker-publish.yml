@@ -77,9 +77,9 @@ jobs:
         with:
           base_image: raspi_4_bullseye:20230102
 
-        run: |
-          IMAGE_TAG=$(echo ${{ matrix.build-type }} | tr '[A-Z]' '[a-z]')
-          docker build . --file ${{ matrix.build-type }}/Dockerfile --tag $IMAGE_TAG
+          run: |
+            IMAGE_TAG=$(echo ${{ matrix.build-type }} | tr '[A-Z]' '[a-z]')
+            docker build . --file ${{ matrix.build-type }}/Dockerfile --tag $IMAGE_TAG
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
