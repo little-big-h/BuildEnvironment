@@ -27,7 +27,7 @@ jobs:
     if: github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Build image
         run: |
@@ -79,7 +79,7 @@ jobs:
 
           commands: |
             apt update
-            DEBIAN_FRONTEND=noninteractive apt install docker
+            DEBIAN_FRONTEND=noninteractive apt install -yy docker
             IMAGE_TAG=$(echo ${{ matrix.build-type }} | tr '[A-Z]' '[a-z]')
             docker build . --file ${{ matrix.build-type }}/Dockerfile --tag $IMAGE_TAG
 
