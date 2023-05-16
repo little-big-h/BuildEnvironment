@@ -79,7 +79,8 @@ jobs:
 
           commands: |
             apt update
-            DEBIAN_FRONTEND=noninteractive apt install -yy docker
+            DEBIAN_FRONTEND=noninteractive apt install -yy curl
+            curl -sSL https://get.docker.com | sh
             IMAGE_TAG=$(echo ${{ matrix.build-type }} | tr '[A-Z]' '[a-z]')
             docker build . --file ${{ matrix.build-type }}/Dockerfile --tag $IMAGE_TAG
 
